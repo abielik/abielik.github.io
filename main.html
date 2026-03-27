@@ -1,0 +1,856 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prop League — How to Play</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #181818;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0ede6;
+    --muted: #888880;
+    --accent: #e8ff47;
+    --accent2: #ff6b35;
+    --accent3: #47c8ff;
+    --accent4: #47ff5e;
+    --green: #3ddb7a;
+    --red: #ff4d4d;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 56px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.06em; color: var(--accent); }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(232,255,71,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 70%, rgba(71,200,255,0.05) 0%, transparent 55%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 900px; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); border: 0.5px solid rgba(232,255,71,0.3);
+    padding: 4px 12px; border-radius: 2px; margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 10vw, 128px);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    font-size: 18px; font-weight: 300; color: var(--muted);
+    max-width: 560px; margin-top: 1.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 400; }
+  .hero-cta {
+    display: flex; gap: 12px; margin-top: 2.5rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--accent); color: #0a0a0a;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+    padding: 12px 28px; border-radius: 3px; border: none; cursor: pointer;
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent; color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400;
+    padding: 12px 28px; border-radius: 3px;
+    border: 0.5px solid var(--border2); cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-ghost:hover { background: var(--surface); transform: translateY(-1px); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+  .section-tag {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem; display: block;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 60px);
+    letter-spacing: 0.03em;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+  .section-body { font-size: 16px; font-weight: 300; color: #b8b5ad; line-height: 1.75; max-width: 640px; }
+
+  /* HOW IT WORKS — STEPS */
+  .steps { margin-top: 3rem; display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: grid; grid-template-columns: 64px 1fr;
+    gap: 0 1.5rem; position: relative;
+    padding-bottom: 2.5rem;
+  }
+  .step:last-child { padding-bottom: 0; }
+  .step-num-col { display: flex; flex-direction: column; align-items: center; }
+  .step-num {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 0.5px solid var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 20px;
+    color: var(--accent); background: var(--surface);
+    flex-shrink: 0; z-index: 1;
+  }
+  .step-line {
+    flex: 1; width: 1px; background: var(--border);
+    margin-top: 8px;
+  }
+  .step:last-child .step-line { display: none; }
+  .step-content { padding-top: 10px; }
+  .step-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .step-title { font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+  .step-body { font-size: 15px; font-weight: 300; color: #a0a098; line-height: 1.65; }
+
+  /* SCORING EXAMPLE */
+  #scoring { background: var(--surface); }
+  .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 2.5rem; }
+  @media(max-width: 600px) { .score-grid { grid-template-columns: 1fr; } }
+  .score-card {
+    background: var(--bg); border: 0.5px solid var(--border2);
+    border-radius: 6px; padding: 1.25rem 1.5rem;
+    position: relative; overflow: hidden;
+  }
+  .score-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  }
+  .score-card.win::before { background: var(--green); }
+  .score-card.lose::before { background: var(--red); }
+  .score-card .prop-name { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; }
+  .score-card .prop-line { font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+  .score-card .prop-odds { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  .score-card .prop-result {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 12px; border-top: 0.5px solid var(--border);
+  }
+  .score-card .result-label { font-size: 14px; }
+  .score-card .result-pts { font-family: 'Bebas Neue', sans-serif; font-size: 28px; }
+  .win .result-pts { color: var(--green); }
+  .lose .result-pts { color: var(--red); }
+  .tag-over { color: var(--accent2); font-size: 12px; font-weight: 500; background: rgba(255,107,53,0.12); padding: 2px 8px; border-radius: 2px; }
+  .tag-under { color: var(--accent3); font-size: 12px; font-weight: 500; background: rgba(71,200,255,0.1); padding: 2px 8px; border-radius: 2px; }
+
+  /* CONFIDENCE */
+  .conf-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 2.5rem; }
+  @media(max-width: 500px) { .conf-grid { grid-template-columns: repeat(2, 1fr); } }
+  .conf-card {
+    background: var(--bg); border: 0.5px solid var(--border2);
+    border-radius: 6px; padding: 1.25rem;
+    text-align: center;
+  }
+  .conf-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1;
+    margin-bottom: 8px;
+  }
+  .conf-card:nth-child(1) .conf-num { color: #888; }
+  .conf-card:nth-child(2) .conf-num { color: var(--muted); }
+  .conf-card:nth-child(3) .conf-num { color: var(--accent3); }
+  .conf-card:nth-child(4) .conf-num { color: var(--accent); }
+  .conf-card:nth-child(5) .conf-num { color: var(--accent4); }
+  .conf-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* TIEBREAKER */
+  .tiebreaker-box {
+    margin-top: 2.5rem;
+    background: var(--bg);
+    border: 0.5px solid rgba(232,255,71,0.25);
+    border-radius: 6px;
+    padding: 2rem;
+  }
+  .tb-scenario { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; margin-top: 1.5rem; }
+  @media(max-width: 580px) { .tb-scenario { grid-template-columns: 1fr; } }
+  .tb-player {
+    background: var(--surface2); border: 0.5px solid var(--border2);
+    border-radius: 6px; padding: 1rem 1.25rem;
+  }
+  .tb-name { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 4px; }
+  .tb-pick { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+  .tb-conf { font-size: 13px; color: var(--muted); }
+  .tb-vs { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--muted); text-align: center; }
+  .tb-result {
+    margin-top: 1.5rem; padding: 1rem 1.25rem;
+    background: rgba(232,255,71,0.05);
+    border: 0.5px solid rgba(232,255,71,0.15);
+    border-radius: 6px;
+  }
+  .tb-result p { font-size: 14px; color: #b8b5ad; line-height: 1.6; }
+  .tb-result strong { color: var(--accent); font-weight: 500; }
+
+  /* STRUCTURE */
+  .structure-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px; margin-top: 2.5rem;
+  }
+  @media(max-width: 640px) { .structure-row { grid-template-columns: 1fr; } }
+  .struct-card {
+    background: var(--surface); border: 0.5px solid var(--border2);
+    border-radius: 6px; padding: 1.5rem;
+  }
+  .struct-icon { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--accent); margin-bottom: 12px; }
+  .struct-title { font-size: 16px; font-weight: 500; margin-bottom: 6px; }
+  .struct-body { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* TIMELINE */
+  .timeline { margin-top: 2.5rem; }
+  .timeline-row {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1rem 0; border-bottom: 0.5px solid var(--border);
+  }
+  .timeline-row:last-child { border-bottom: none; }
+  .tl-day { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--accent); min-width: 100px; padding-top: 2px; }
+  .tl-event { font-size: 15px; font-weight: 400; color: var(--text); }
+  .tl-desc { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+  /* PROPS */
+  .game-block { }
+  .game-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1rem; padding-bottom: 10px;
+    border-bottom: 0.5px solid var(--border2);
+    flex-wrap: wrap; gap: 8px;
+  }
+  .game-matchup { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.04em; color: var(--text); }
+  .game-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .stat-group { margin-bottom: 1rem; }
+  .stat-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin-bottom: 8px; padding-left: 2px;
+  }
+  .prop-row {
+    background: var(--bg); border: 0.5px solid var(--border2);
+    border-radius: 6px; margin-bottom: 8px; overflow: hidden;
+  }
+  .prop-player-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px 6px; gap: 8px; flex-wrap: wrap;
+  }
+  .prop-player { font-size: 15px; font-weight: 500; color: var(--text); }
+  .prop-avg { font-size: 12px; color: var(--muted); }
+  .prop-line-num { font-size: 13px; color: var(--muted); }
+  .prop-sides {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 0.5px solid var(--border);
+  }
+  .prop-side {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 14px; gap: 8px;
+    transition: background 0.15s;
+  }
+  .prop-side:first-child { border-right: 0.5px solid var(--border); }
+  .prop-side:hover { background: var(--surface2); }
+  .side-direction {
+    font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px;
+  }
+  .dir-over { color: var(--accent2); }
+  .dir-under { color: var(--accent3); }
+  .side-right { display: flex; align-items: center; gap: 12px; }
+  .side-odds { font-size: 14px; font-weight: 500; color: var(--text); min-width: 44px; text-align: right; }
+  .side-pts {
+    font-size: 12px; padding: 2px 8px; border-radius: 2px;
+    background: rgba(255,255,255,0.05); color: var(--muted);
+    white-space: nowrap; min-width: 56px; text-align: center;
+  }
+  .side-pts.capped { color: var(--accent); background: rgba(232,255,71,0.08); }
+  .prop-num-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(255,255,255,0.06); border: 0.5px solid var(--border2);
+    font-size: 11px; color: var(--muted); font-weight: 500; flex-shrink: 0;
+  }
+  @media(max-width: 480px) {
+    .prop-sides { grid-template-columns: 1fr; }
+    .prop-side:first-child { border-right: none; border-bottom: 0.5px solid var(--border); }
+  }
+
+  /* FAQ */
+  .faq-list { margin-top: 2rem; }
+  .faq-item { border-bottom: 0.5px solid var(--border); }
+  .faq-q {
+    width: 100%; background: none; border: none;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 0; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 400; color: var(--text);
+    text-align: left; gap: 1rem;
+  }
+  .faq-q:hover { color: var(--accent); }
+  .faq-arrow { font-size: 18px; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
+  .faq-a { display: none; font-size: 15px; font-weight: 300; color: #a0a098; line-height: 1.7; padding-bottom: 1.25rem; }
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 3rem 2rem;
+    text-align: center;
+    font-size: 13px; color: var(--muted);
+  }
+  footer strong { color: var(--text); font-weight: 500; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* HIGHLIGHT */
+  .hl { color: var(--accent); }
+  .hl2 { color: var(--accent3); }
+  .hl3 { color: var(--accent2); }
+
+  /* PILL */
+  .pill {
+    display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 3px 10px; border-radius: 2px; margin-right: 6px;
+  }
+  .pill-nba { background: rgba(71,200,255,0.12); color: var(--accent3); }
+  .pill-nfl { background: rgba(232,255,71,0.1); color: var(--accent); }
+  .pill-mlb { background: rgba(255,107,53,0.12); color: var(--accent2); }
+
+  .cap-note {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: rgba(71,200,255,0.05);
+    border: 0.5px solid rgba(71,200,255,0.2);
+    border-radius: 6px;
+    font-size: 14px; color: #b8b5ad; line-height: 1.6;
+  }
+  .cap-note strong { color: var(--accent3); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Prop League</span>
+  <div class="nav-links">
+    <a href="#how-it-works">How it works</a>
+    <a href="#scoring">Scoring</a>
+    <a href="#confidence">Confidence</a>
+    <a href="#props">Props</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <span class="hero-tag">Trial Week · NBA</span>
+    <h1>Beat your<br><span>opponent.</span><br>Not the house.</h1>
+    <p class="hero-sub">
+      A <strong>daily head-to-head league</strong> built on player props.<br> Pick lines, assign confidence, and outsmart the person across from you — not just the odds.
+    </p>
+    <div class="hero-cta">
+      <a href="#how-it-works" class="btn-primary">Learn how to play</a>
+      <a href="#props" class="btn-ghost">See Thursday's props</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="section-inner">
+    <span class="section-tag">The basics</span>
+    <h2 class="section-title reveal">How it works</h2>
+    <p class="section-body reveal">Each day you're matched against one opponent. You each make 5 prop picks from a shared pool of 10 lines. More points wins the matchup. Simple loop, deep strategy.</p>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num-col"><div class="step-num">1</div><div class="step-line"></div></div>
+        <div class="step-content">
+          <div class="step-label">Daily</div>
+          <div class="step-title">10 props are posted for the day</div>
+          <div class="step-body">The commissioner drops the day's available lines — player props across NBA games. Each line has an over and an under, with real Vegas odds attached. Lines are live, meaning they can shift before you lock in.</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num-col"><div class="step-num">2</div><div class="step-line"></div></div>
+        <div class="step-content">
+          <div class="step-label">Daily</div>
+          <div class="step-title">You choose 5 props and assign confidence</div>
+          <div class="step-body">Pick 5 of the 10 available props. For each one, choose over or under. Then assign a confidence score of 1, 2, 3, 4, or 5 — each number used exactly once across your 5 picks. Deadline is when the first game tips off.</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num-col"><div class="step-num">3</div><div class="step-line"></div></div>
+        <div class="step-content">
+          <div class="step-label">Daily</div>
+          <div class="step-title">Choose your "Double Down" and "Prop Blocker"</div>
+          <div class="step-body">Assign your "Double Down" to one pick to potentially double your points, and use your "Prop Blocker" to block your opponent from selecting a specific prop (limiting them to 4 props if used correctly). If used strategically, these tools can significantly impact the outcome of your matchup.</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num-col"><div class="step-num">4</div><div class="step-line"></div></div>
+        <div class="step-content">
+          <div class="step-label">Daily</div>
+          <div class="step-title">Games play out, points are tallied</div>
+          <div class="step-body">Correct picks earn points based on the odds of the line you locked in. Harder lines pay more. The person with more total points wins the matchup for the day. Highest daily scorer in the league wins a prize.</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num-col"><div class="step-num">5</div><div class="step-line"></div></div>
+        <div class="step-content">
+          <div class="step-label">Nightly</div>
+          <div class="step-title">Results posted, next day opens</div>
+          <div class="step-body">Scores are announced, standings updated, and the next day's props drop. Over the full trial, the best record (total points as tiebreaker) determines the winner.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCORING -->
+<section id="scoring">
+  <div class="section-inner">
+    <span class="section-tag">Points</span>
+    <h2 class="section-title reveal">How scoring works</h2>
+    <p class="section-body reveal">Points come directly from the odds. A pick at <span class="hl2">+150</span> earns <strong>1.50 pts</strong> if correct. A pick at <span class="hl3">-200</span> earns <strong>0.50 pts</strong> if correct. Wrong picks earn zero. The harder the call, the bigger the reward.</p>
+
+    <div class="score-grid reveal">
+      <div class="score-card win">
+        <div class="prop-name">LeBron James — Points</div>
+        <div class="prop-line">Under 24.5 &nbsp;<span class="tag-under">Under</span></div>
+        <div class="prop-odds">Locked at +150 · Result: ✓ Hit</div>
+        <div class="prop-result">
+          <span class="result-label" style="font-size:13px; color: var(--muted);">+150 → 150 ÷ 100</span>
+          <span class="result-pts">+1.50 pts</span>
+        </div>
+      </div>
+      <div class="score-card win">
+        <div class="prop-name">Steph Curry — 3PM</div>
+        <div class="prop-line">Over 4.5 &nbsp;<span class="tag-over">Over</span></div>
+        <div class="prop-odds">Locked at -110 · Result: ✓ Hit</div>
+        <div class="prop-result">
+          <span class="result-label" style="font-size:13px; color: var(--muted);">-110 → 100 ÷ 110</span>
+          <span class="result-pts">+0.91 pts</span>
+        </div>
+      </div>
+      <div class="score-card lose">
+        <div class="prop-name">Nikola Jokic — Assists</div>
+        <div class="prop-line">Over 9.5 &nbsp;<span class="tag-over">Over</span></div>
+        <div class="prop-odds">Locked at +130 · Result: ✗ Miss</div>
+        <div class="prop-result">
+          <span class="result-label" style="font-size:13px; color: var(--muted);">Incorrect pick</span>
+          <span class="result-pts">0 pts</span>
+        </div>
+      </div>
+      <div class="score-card win">
+        <div class="prop-name">Anthony Davis — Blocks</div>
+        <div class="prop-line">Under 1.5 &nbsp;<span class="tag-under">Under</span></div>
+        <div class="prop-odds">Locked at -120 · Result: ✓ Hit</div>
+        <div class="prop-result">
+          <span class="result-label" style="font-size:13px; color: var(--muted);">-120 → 100 ÷ 120</span>
+          <span class="result-pts">+0.83 pts</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cap-note reveal">
+      <strong>Point cap: 2.5 pts per pick (5 pts if double down used).</strong> This prevents anyone from gaming the system by stacking massive underdogs. Wild longshots still pay well — they just don't break the scoring scale. Your daily total from 5 picks is typically somewhere between 1 and 10 points.
+    </div>
+  </div>
+</section>
+
+<!-- CONFIDENCE -->
+<section id="confidence">
+  <div class="section-inner">
+    <span class="section-tag">Strategy layer</span>
+    <h2 class="section-title reveal">The confidence score</h2>
+    <p class="section-body reveal">For each of your 5 picks, you assign a confidence score — 1 through 5. Each number is used exactly once. This number is your <strong>tiebreaker weapon</strong>, not a point multiplier. Choose wisely.</p>
+
+    <div class="conf-grid reveal">
+      <div class="conf-card">
+        <div class="conf-num">1</div>
+        <div class="conf-desc">Least confident. Your shakiest pick.</div>
+      </div>
+      <div class="conf-card">
+        <div class="conf-num">2</div>
+        <div class="conf-desc">Moderate confidence. A coin-flip you're leaning on.</div>
+      </div>
+      <div class="conf-card">
+        <div class="conf-num">3</div>
+        <div class="conf-desc">High confidence. You like this one a lot.</div>
+      </div>
+      <div class="conf-card">
+        <div class="conf-num">4</div>
+        <div class="conf-desc">Stone cold lock. You'd bet your lunch on it.</div>
+      </div>
+      <div class="conf-card">
+        <div class="conf-num">5</div>
+        <div class="conf-desc">Absolute certainty. You'd bet your house on it.</div>
+      </div>
+    </div>
+
+    <div class="tiebreaker-box reveal">
+      <p style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 4px;">Tiebreaker rule</p>
+      <p style="font-size: 20px; font-weight: 500; margin-bottom: 1rem;">What happens when you both pick the same side?</p>
+      <p style="font-size: 15px; color: #a0a098; margin-bottom: 1rem;">If you and your opponent pick the same player prop on the same side, the confidence scores decide who "owns" that pick — and the loser automatically gets flipped to the other side.</p>
+
+      <div class="tb-scenario">
+        <div class="tb-player">
+          <div class="tb-name">You</div>
+          <div class="tb-pick">Jokic Assists — Under 9.5</div>
+          <div class="tb-conf">Confidence: <span style="color:var(--accent)">4</span></div>
+        </div>
+        <div class="tb-vs">VS</div>
+        <div class="tb-player">
+          <div class="tb-name">Opponent</div>
+          <div class="tb-pick">Jokic Assists — Under 9.5</div>
+          <div class="tb-conf">Confidence: <span style="color:var(--muted)">2</span></div>
+        </div>
+      </div>
+
+      <div class="tb-result">
+        <p>You win the tiebreaker (4 &gt; 2). <strong>You keep the Under.</strong> Your opponent is automatically assigned the Over. Same line, opposite sides — now it's a zero-sum battle on that single prop.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRUCTURE -->
+<section>
+  <div class="section-inner">
+    <span class="section-tag">The league</span>
+    <h2 class="section-title reveal">League structure</h2>
+    <p class="section-body reveal">For the trial: 4 teams, daily matchups, run for 1-2 weeks. Think of it as a round-robin preview before the full season launches.</p>
+
+    <div class="structure-row reveal">
+      <div class="struct-card">
+        <div class="struct-icon">4</div>
+        <div class="struct-title">Teams</div>
+        <div class="struct-body">4 managers. Daily matchups. Everyone plays every day.</div>
+      </div>
+      <div class="struct-card">
+        <div class="struct-icon">10</div>
+        <div class="struct-title">Props per day</div>
+        <div class="struct-body">10 lines posted. You pick 5. Half the board used, half left on the table.</div>
+      </div>
+      <div class="struct-card">
+        <div class="struct-icon">W–L</div>
+        <div class="struct-title">Standings</div>
+        <div class="struct-body">Best record wins the trial. Total points is the tiebreaker.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 1.5rem; padding: 1rem 1.25rem; background: var(--surface); border-radius: 6px; border: 0.5px solid var(--border2); display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <span style="font-size: 13px; color: var(--muted);">Works with any sport:</span>
+      <span class="pill pill-nba">NBA</span>
+      <span class="pill pill-nfl">NFL</span>
+      <span class="pill pill-mlb">MLB</span>
+      <span style="font-size: 13px; color: var(--muted)">and more — props exist for any league</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROPS SECTION — paste this before the FAQ section -->
+<section id="props" style="background: var(--surface);">
+  <div class="section-inner">
+    <span class="section-tag">Day 1 · NBA</span>
+    <h2 class="section-title reveal">This week's props</h2>
+    <p class="section-body reveal">10 props across 3 games. Pick 5, choose over or under, assign confidence 1–5. Deadline Sunday 7:00 PM ET. Lines are live — what you see when you submit is what you lock.</p>
+ 
+    <div id="props-container" style="margin-top: 2.5rem; display: flex; flex-direction: column; gap: 2rem;"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <span class="section-tag">Questions</span>
+    <h2 class="section-title reveal">FAQ</h2>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I need to pick 5 different props? <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a">Yes — each prop can only be selected once per person. You also can't pick two props on the same player in the same day (TBD by commissioner for the trial).</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if a game is postponed or a player is scratched? <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a">If a prop becomes void (game postponed, player DNP), that pick is removed and the prop with the next closest line will be used. The commissioner will handle this on a case-by-case basis during the trial.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I change my picks after I submit? <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a">No. Once you submit the form, your picks are locked. The Google Form submission timestamp is your record. Check everything carefully before hitting submit.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is the "double down" and "prop blocker" feature? <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a">The "double down" feature allows you to double the points for a single pick, while the "prop blocker" feature lets you block an opponent's pick. Correctly blocking a pick can prevent your opponent from scoring points, by limiting them to 4 props. Use these strategically to maximize your score and disrupt your opponent's strategy.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if I accidentally use the same confidence number twice? <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a">The form will flag this before you can submit. If somehow a duplicate slips through, the commissioner will assign the lower confidence score to the later pick in the submission and adjust accordingly.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is there a point cap? <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a">Yes — 2.5 points maximum per correct pick (5 pts if double down used). This prevents someone from winning a week purely by loading up on massive underdogs. A +400 dog would be capped at 2.5 pts rather than 4.0. The cap only kicks in on extreme lines — most normal props won't get close to it.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What's the goal of the confidence score beyond tiebreakers? <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a">Beyond tiebreakers, confidence scores are a mind game. If your opponent knows you always put your 4 on overs, they might specifically target those same props to force tiebreakers and flip you to the under. Or you might bluff — put a 4 on a pick you're not actually confident about to mess with their strategy. It's the poker layer of the game.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p style="font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.05em; margin-bottom: 8px; color: var(--accent);">Prop League</p>
+  <p>Trial Week · NBA · 4 Teams · <strong>Good luck.</strong></p>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    btn.parentElement.classList.toggle('open');
+  }
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+(function() {
+  const CAP = 2.5;
+ 
+  function calcPts(odds) {
+    let raw = odds > 0 ? odds / 100 : 100 / Math.abs(odds);
+    return Math.min(raw, CAP);
+  }
+ 
+  function fmtOdds(o) { return o > 0 ? '+' + o : '' + o; }
+  function fmtPts(p) {
+    let rounded = Math.round(p * 100) / 100;
+    return (rounded === CAP ? '★ ' : '') + rounded.toFixed(2) + ' pts';
+  }
+ 
+  const GAMES = [
+    {
+      matchup: 'NY Knicks vs Charlotte Hornets',
+      props: [
+        { player: 'Jalen Brunson', avg: 26.2, stat: 'Points', line: 25.5, overOdds: -117, underOdds: -109 },
+        { player: 'Jalen Brunson', avg: 2.7, stat: 'Threes made', line: 2.5, overOdds: 142, underOdds: -188 },
+        { player: 'Miles Bridges', avg: 5.9, stat: 'Rebounds', line: 4.5, overOdds: -151, underOdds: 115 },
+        { player: 'LaMelo Ball', avg: null, stat: 'Blocks', line: 0.5, overOdds: 250, underOdds: -400 },
+      ]
+    },
+    {
+      matchup: 'Sacramento Kings vs Orlando Magic',
+      props: [
+        { player: 'Paolo Banchero', avg: 22.7, stat: 'Points', line: 25.5, overOdds: -102, underOdds: -125 },
+        { player: 'Desmond Bane', avg: 2.0, stat: 'Threes made', line: 2.5, overOdds: 142, underOdds: -188 },
+        { player: 'Precious Achiuwa', avg: 0.9, stat: 'Steals', line: 0.5, overOdds: -175, underOdds: 120 },
+      ]
+    },
+    {
+      matchup: 'NO Pelicans vs Detroit Pistons',
+      props: [
+        { player: 'Zion Williamson', avg: 21.4, stat: 'Points', line: 21.5, overOdds: -115, underOdds: -111 },
+        { player: 'Caris LeVert', avg: 1.0, stat: 'Threes made', line: 1.5, overOdds: 167, underOdds: -223 },
+        { player: 'Dejounte Murray', avg: 6.7, stat: 'Assists', line: 6.5, overOdds: 115, underOdds: -151 },
+      ]
+    }
+  ];
+ 
+  // Group props by stat type within each game
+  function groupByStat(props) {
+    const order = ['Points', 'Threes made', 'Rebounds', 'Assists', 'Steals', 'Blocks'];
+    const map = {};
+    props.forEach(p => {
+      if (!map[p.stat]) map[p.stat] = [];
+      map[p.stat].push(p);
+    });
+    return order.filter(s => map[s]).map(s => ({ stat: s, props: map[s] }));
+  }
+ 
+  let propNumber = 1;
+  const container = document.getElementById('props-container');
+ 
+  GAMES.forEach(game => {
+    const groups = groupByStat(game.props);
+    const gameEl = document.createElement('div');
+    gameEl.className = 'game-block reveal';
+ 
+    let groupsHTML = '';
+    groups.forEach(group => {
+      let rowsHTML = '';
+      group.props.forEach(prop => {
+        const overPts = calcPts(prop.overOdds);
+        const underPts = calcPts(prop.underOdds);
+        const overCapped = overPts >= CAP;
+        const underCapped = underPts >= CAP;
+        const avgStr = prop.avg !== null ? `Avg ${prop.avg}` : '';
+ 
+        rowsHTML += `
+          <div class="prop-row">
+            <div class="prop-player-row">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span class="prop-num-badge">${propNumber++}</span>
+                <span class="prop-player">${prop.player}</span>
+                ${avgStr ? `<span class="prop-avg">· ${avgStr}</span>` : ''}
+              </div>
+              <span class="prop-line-num">${prop.line} line</span>
+            </div>
+            <div class="prop-sides">
+              <div class="prop-side">
+                <span class="side-direction dir-over">Over ${prop.line}</span>
+                <div class="side-right">
+                  <span class="side-odds">${fmtOdds(prop.overOdds)}</span>
+                  <span class="side-pts ${overCapped ? 'capped' : ''}">${fmtPts(overPts)}</span>
+                </div>
+              </div>
+              <div class="prop-side">
+                <span class="side-direction dir-under">Under ${prop.line}</span>
+                <div class="side-right">
+                  <span class="side-odds">${fmtOdds(prop.underOdds)}</span>
+                  <span class="side-pts ${underCapped ? 'capped' : ''}">${fmtPts(underPts)}</span>
+                </div>
+              </div>
+            </div>
+          </div>`;
+      });
+ 
+      groupsHTML += `
+        <div class="stat-group">
+          <div class="stat-label">${group.stat}</div>
+          ${rowsHTML}
+        </div>`;
+    });
+ 
+    gameEl.innerHTML = `
+      <div class="game-header">
+        <span class="game-matchup">${game.matchup}</span>
+        <span class="game-tag">${game.props.length} prop${game.props.length > 1 ? 's' : ''}</span>
+      </div>
+      ${groupsHTML}`;
+ 
+    container.appendChild(gameEl);
+  });
+ 
+  // Re-trigger reveal observer for dynamically added elements
+  const newReveals = container.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.05 });
+  newReveals.forEach(el => obs.observe(el));
+})();
+
+</script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>
