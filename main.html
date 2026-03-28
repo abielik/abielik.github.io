@@ -352,30 +352,31 @@
   .team-name { font-size: 17px; font-weight: 500; color: var(--text); line-height: 1.2; }
   .team-score-total { font-family: 'Bebas Neue', sans-serif; font-size: 40px; line-height: 1; color: var(--muted); margin-top: 4px; }
   .team-score-total.leading { color: var(--accent); }
-  .matchup-divider { display: flex; align-items: center; justify-content: center; padding: 0 1rem; }
+  .matchup-divider { display: flex; align-items: center; justify-content: center; align-self: center; padding: 0 1rem; }
   .vs-badge { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--muted); }
-  .picks-table { width: 100%; border-top: 0.5px solid var(--border); border-collapse: collapse; }
+  .picks-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-top: 0.5px solid var(--border); }
+  .picks-table { width: 100%; min-width: 480px; border-collapse: collapse; }
   .picks-table th {
     font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
     padding: 8px 14px; text-align: left; border-bottom: 0.5px solid var(--border);
-    background: var(--surface2);
+    background: var(--surface2); white-space: nowrap;
   }
   .picks-table th.right { text-align: right; }
-  .picks-table td { padding: 9px 14px; font-size: 13px; border-bottom: 0.5px solid var(--border); vertical-align: middle; }
+  .picks-table td { padding: 9px 14px; font-size: 13px; border-bottom: 0.5px solid var(--border); vertical-align: middle; white-space: nowrap; }
   .picks-table tr:last-child td { border-bottom: none; }
   .picks-table tr:hover td { background: rgba(255,255,255,0.02); }
   .pick-player { font-weight: 500; color: var(--text); }
   .pick-stat { color: var(--muted); font-size: 12px; }
-  .pick-dir-over { color: var(--accent2); font-size: 12px; font-weight: 500; background: rgba(255,107,53,0.1); padding: 2px 7px; border-radius: 2px; white-space: nowrap; }
-  .pick-dir-under { color: var(--accent3); font-size: 12px; font-weight: 500; background: rgba(71,200,255,0.1); padding: 2px 7px; border-radius: 2px; white-space: nowrap; }
+  .pick-dir-over { color: var(--accent2); font-size: 12px; font-weight: 500; background: rgba(255,107,53,0.1); padding: 2px 7px; border-radius: 2px; white-space: nowrap; display: inline-block; }
+  .pick-dir-under { color: var(--accent3); font-size: 12px; font-weight: 500; background: rgba(71,200,255,0.1); padding: 2px 7px; border-radius: 2px; white-space: nowrap; display: inline-block; }
   .pick-odds { color: var(--muted); font-size: 12px; }
   .pick-pts { font-family: 'Bebas Neue', sans-serif; font-size: 18px; text-align: right; }
   .pick-pts.pending { color: var(--muted); }
   .pick-pts.hit { color: var(--green); }
   .pick-pts.miss { color: var(--red); }
   .pick-conf { font-size: 11px; color: var(--muted); text-align: center; }
-  .badge-dd { font-size: 10px; background: rgba(232,255,71,0.12); color: var(--accent); padding: 1px 6px; border-radius: 2px; margin-left: 4px; }
-  .badge-blocked { font-size: 10px; background: rgba(255,77,77,0.12); color: var(--red); padding: 1px 6px; border-radius: 2px; margin-left: 4px; }
+  .badge-dd { font-size: 10px; background: rgba(232,255,71,0.12); color: var(--accent); padding: 1px 6px; border-radius: 2px; margin-left: 4px; display: inline-block; }
+  .badge-blocked { font-size: 10px; background: rgba(255,77,77,0.12); color: var(--red); padding: 1px 6px; border-radius: 2px; margin-left: 4px; display: inline-block; }
   .team-section-header {
     display: flex; align-items: center; gap: 10px;
     padding: 8px 14px; background: var(--surface);
@@ -383,6 +384,25 @@
   }
   .team-section-name { font-size: 12px; font-weight: 500; color: var(--text); text-transform: uppercase; letter-spacing: 0.06em; }
   .team-section-pts { font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: var(--muted); margin-left: auto; }
+  /* mobile stacked pick cards */
+  .pick-cards { display: none; }
+  .pick-card {
+    padding: 11px 14px; border-bottom: 0.5px solid var(--border);
+    display: grid; grid-template-columns: 22px 1fr auto; gap: 10px; align-items: center;
+  }
+  .pick-card:last-child { border-bottom: none; }
+  .pick-card-conf { font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: var(--muted); text-align: center; line-height: 1; padding-top: 2px; }
+  .pick-card-main { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .pick-card-player { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.2; }
+  .pick-card-meta { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+  .pick-card-pts { font-family: 'Bebas Neue', sans-serif; font-size: 20px; text-align: right; white-space: nowrap; }
+  @media (max-width: 540px) {
+    .picks-table-wrap { display: none; }
+    .pick-cards { display: block; border-top: 0.5px solid var(--border); }
+    .matchup-team { padding: 1rem 1rem 0.75rem; }
+    .team-score-total { font-size: 32px; }
+    .matchup-teams { align-items: flex-start; }
+  }
   .standings-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
   .standings-table th { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 8px 14px; text-align: left; border-bottom: 0.5px solid var(--border2); }
   .standings-table th.num { text-align: right; }
@@ -679,7 +699,7 @@
 <!-- MATCHUPS -->
 <section id="matchups">
   <div class="section-inner">
-    <span class="section-tag">Day 1</span>
+    <span class="section-tag">Day 1 · Week 1</span>
     <h2 class="section-title reveal">Matchups</h2>
     <p class="section-body reveal">Two head-to-head matchups running today. Scores update as results come in. Points are pending until each prop settles.</p>
 
@@ -1043,6 +1063,32 @@
     }).join('');
   }
 
+  function buildPickCards(team) {
+    const picks = SELECTIONS.filter(s => s.team === team).sort((a,b) => a.pick - b.pick);
+    return picks.map(sel => {
+      const prop = PROPS[sel.propId];
+      const finalPts = calcFinalPts(sel);
+      const maxPts = (() => { let p = Math.min(sel.basePts, CAP); return sel.dd ? Math.min(p*2, CAP*2) : p; })();
+      let ptsClass = 'pending pick-card-pts', ptsVal = maxPts.toFixed(2);
+      if (sel.blocked) { ptsClass = 'miss pick-card-pts'; ptsVal = '—'; }
+      else if (sel.result === 1) { ptsClass = 'hit pick-card-pts'; ptsVal = '+' + finalPts.toFixed(2); }
+      else if (sel.result === -1) { ptsClass = 'miss pick-card-pts'; ptsVal = '0.00'; }
+      const dirTag = sel.side === 'Over'
+        ? `<span class="pick-dir-over">Over ${prop.line}</span>`
+        : `<span class="pick-dir-under">Under ${prop.line}</span>`;
+      const ddBadge = sel.dd ? `<span class="badge-dd">2x</span>` : '';
+      const blkBadge = sel.blocked ? `<span class="badge-blocked">blocked</span>` : '';
+      return `<div class="pick-card">
+        <div class="pick-card-conf">${sel.pick}</div>
+        <div class="pick-card-main">
+          <div class="pick-card-player">${prop.player} <span style="font-size:12px;color:var(--muted);font-weight:400">${prop.stat}</span></div>
+          <div class="pick-card-meta">${dirTag}<span style="font-size:12px;color:var(--muted)">${fmtOdds(sel.odds)}</span>${ddBadge}${blkBadge}</div>
+        </div>
+        <div class="${ptsClass}">${ptsVal}</div>
+      </div>`;
+    }).join('');
+  }
+
   function buildMatchupCard(m) {
     const t1pts = teamTotal(m.team1);
     const t2pts = teamTotal(m.team2);
@@ -1060,43 +1106,57 @@
         <div class="matchup-team">
           <div class="team-name">${m.team1}</div>
           <div class="team-score-total ${t1lead ? 'leading' : ''}">${t1pts.toFixed(2)}</div>
-          <div style="font-size:11px; color:var(--muted); margin-top:2px">Max possible: ${t1pending.toFixed(2)}</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:2px">Max: ${t1pending.toFixed(2)}</div>
         </div>
         <div class="matchup-divider"><span class="vs-badge">VS</span></div>
         <div class="matchup-team right">
           <div class="team-name">${m.team2}</div>
           <div class="team-score-total ${t2lead ? 'leading' : ''}">${t2pts.toFixed(2)}</div>
-          <div style="font-size:11px; color:var(--muted); margin-top:2px">Max possible: ${t2pending.toFixed(2)}</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:2px">Max: ${t2pending.toFixed(2)}</div>
         </div>
       </div>
-      <table class="picks-table">
-        <thead>
-          <tr>
-            <th style="width:32px">Conf</th>
-            <th>Player · Stat</th>
-            <th>Pick</th>
-            <th>Odds</th>
-            <th style="text-align:right">Bonus</th>
-            <th class="right">Pts</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td colspan="6" style="padding:0">
-            <div class="team-section-header">
-              <span class="team-section-name">${m.team1}</span>
-              <span class="team-section-pts">${t1pts.toFixed(2)} pts</span>
-            </div>
-          </td></tr>
-          ${buildPickRows(m.team1)}
-          <tr><td colspan="6" style="padding:0">
-            <div class="team-section-header">
-              <span class="team-section-name">${m.team2}</span>
-              <span class="team-section-pts">${t2pts.toFixed(2)} pts</span>
-            </div>
-          </td></tr>
-          ${buildPickRows(m.team2)}
-        </tbody>
-      </table>
+      <div class="picks-table-wrap">
+        <table class="picks-table">
+          <thead>
+            <tr>
+              <th style="width:32px">Conf</th>
+              <th>Player · Stat</th>
+              <th>Pick</th>
+              <th>Odds</th>
+              <th style="text-align:right">Bonus</th>
+              <th class="right">Pts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="6" style="padding:0">
+              <div class="team-section-header">
+                <span class="team-section-name">${m.team1}</span>
+                <span class="team-section-pts">${t1pts.toFixed(2)} pts</span>
+              </div>
+            </td></tr>
+            ${buildPickRows(m.team1)}
+            <tr><td colspan="6" style="padding:0">
+              <div class="team-section-header">
+                <span class="team-section-name">${m.team2}</span>
+                <span class="team-section-pts">${t2pts.toFixed(2)} pts</span>
+              </div>
+            </td></tr>
+            ${buildPickRows(m.team2)}
+          </tbody>
+        </table>
+      </div>
+      <div class="pick-cards">
+        <div class="team-section-header">
+          <span class="team-section-name">${m.team1}</span>
+          <span class="team-section-pts">${t1pts.toFixed(2)} pts</span>
+        </div>
+        ${buildPickCards(m.team1)}
+        <div class="team-section-header">
+          <span class="team-section-name">${m.team2}</span>
+          <span class="team-section-pts">${t2pts.toFixed(2)} pts</span>
+        </div>
+        ${buildPickCards(m.team2)}
+      </div>
     </div>`;
   }
 
