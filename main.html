@@ -498,7 +498,7 @@
     </p>
     <div class="hero-cta">
       <a href="#how-it-works" class="btn-primary">Learn how to play</a>
-      <a href="#props" class="btn-ghost">See Friday's props</a>
+      <a href="#props" class="btn-ghost">See Saturday's props</a>
     </div>
   </div>
 </section>
@@ -701,9 +701,9 @@
 <!-- PROPS SECTION — paste this before the FAQ section -->
 <section id="props" style="background: var(--surface);">
   <div class="section-inner">
-    <span class="section-tag">Day 1 · NBA</span>
-    <h2 class="section-title reveal">Friday's props</h2>
-    <p class="section-body reveal">10 props across 5 games. Pick 5, choose over or under, assign confidence 1–5. Deadline Friday 7:00 PM ET. Lines are live — what you see when you submit is what you lock.</p>
+    <span class="section-tag">Day 2 · NBA</span>
+    <h2 class="section-title reveal">Saturday's props</h2>
+    <p class="section-body reveal">10 props. Pick 5, choose over or under, assign confidence 1–5. Deadline Saturday 3:00 PM ET. Lines are live — what you see when you submit is what you lock.</p>
  
     <div id="props-container" style="margin-top: 2.5rem; display: flex; flex-direction: column; gap: 2rem;"></div>
   </div>
@@ -816,38 +816,43 @@
  
   const GAMES = [
     {
-      matchup: 'LA Clippers vs IND Pacers',
+      matchup: 'SA Spurs vs MIL Bucks',
       props: [
-        { player: 'Kawhi Leonard', avg: 2.6, stat: 'Threes', line: 2.5, overOdds: 124, underOdds: -164 },
+        { player: 'Victor Wembanyama', avg: 1.1, stat: 'Steals', line: 1.5, overOdds: 124, underOdds: -166 },
       ]
     },
     {
-      matchup: 'ATL Hawks vs BOS Celtics',
+      matchup: 'DET Pistons vs MIN Timberwolves',
       props: [
-        { player: 'Jason Tatum', avg: 19.1, stat: 'Points', line: 23.5, overOdds: -109, underOdds: -117 },
-        { player: 'Jason Tatum', avg: 2.8, stat: 'Threes', line: 3.5, overOdds: 108, underOdds: -142 },
-        { player: 'Jaylen Brown', avg: 0.4, stat: 'Blocks', line: 0.5, overOdds: 175, underOdds: -240 },
+        { player: 'Julius Randle', avg: 21.1, stat: 'Points', line: 23.5, overOdds: -119, underOdds: -107 },
+        { player: 'Donte DiVincenzo', avg: 3, stat: 'Threes', line: 3.5, overOdds: 130, underOdds: -172 },
       ]
     },
     {
-      matchup: 'MIA Heat vs CLE Cavaliers',
+      matchup: 'PHI 76ers vs CHA Hornets',
       props: [
-        { player: 'Donovan Mitchell', avg: 1.5, stat: 'Steals', line: 1.5, overOdds: 183, underOdds: -248 },
-        { player: 'Tyler Herro', avg: 3.8, stat: 'Assists', line: 3.5, overOdds: -149, underOdds: 113 },
+        { player: 'LaMelo Ball', avg: 3.7, stat: 'Threes', line: 3.5, overOdds: -140, underOdds: 107 },
+        { player: 'Joel Embiid', avg: 7.5, stat: 'Rebounds', line: 7.5, overOdds: 110, underOdds: -144 },
       ]
     },
     {
-      matchup: 'UTA Jazz vs DEN Nuggets',
+      matchup: 'SAC Kings vs ATL Hawks',
       props: [
-        { player: 'Nikola Jokic', avg: 0.7, stat: 'Blocks', line: 0.5, overOdds: -210, underOdds: 155 },
+        { player: 'Devin Carter', avg: 0.8, stat: 'Steals', line: 1.5, overOdds: 151, underOdds: -202 },
+        { player: 'CJ McCollum', avg: 18.8, stat: 'Points', line: 18.5, overOdds: -101, underOdds: -126 },
       ]
     },
     {
-      matchup: 'BKN Nets vs LA Lakers',
+      matchup: 'CHI Bulls vs MEM Grizzlies',
       props: [
-        { player: 'Luka Doncic', avg: 33.6, stat: 'Points', line: 33.5, overOdds: -119, underOdds: -107 },
-        { player: 'LeBron James', avg: 1.3, stat: 'Threes', line: 1.5, overOdds: 165, underOdds: -221 },
-        { player: 'LeBron James', avg: 6, stat: 'Rebounds', line: 5.5, overOdds: -147, underOdds: 112 },
+        { player: 'Ty Jerome', avg: 19.7, stat: 'Points', line: 20.5, overOdds: -112, underOdds: -114 },
+      ]
+    },
+    {
+      matchup: 'UTA Jazz vs PHO Suns',
+      props: [
+        { player: 'Devin Booker', avg: 1.9, stat: 'Threes', line: 1.5, overOdds: -190, underOdds: 143 },
+        { player: 'Jalen Green', avg: 1.1, stat: 'Steals', line: 1.5, overOdds: 181, underOdds: -245 },
       ]
     }
   ];
@@ -979,16 +984,16 @@
   const CAP = 2.5;
 
   const PROPS = {
-    1:  { player: 'Kawhi Leonard',    stat: 'Threes',  line: 2.5 },
-    2:  { player: 'Jason Tatum',      stat: 'Points',  line: 23.5 },
-    3:  { player: 'Jason Tatum',      stat: 'Threes',  line: 3.5 },
-    4:  { player: 'Jaylen Brown',     stat: 'Blocks',  line: 0.5 },
-    5:  { player: 'Tyler Herro',      stat: 'Assists', line: 3.5 },
-    6:  { player: 'Donovan Mitchell', stat: 'Steals',  line: 1.5 },
-    7:  { player: 'Nikola Jokic',     stat: 'Blocks',  line: 0.5 },
-    8:  { player: 'Luka Doncic',      stat: 'Points',  line: 33.5 },
-    9:  { player: 'LeBron James',     stat: 'Threes',  line: 1.5 },
-    10: { player: 'LeBron James',     stat: 'Rebounds',line: 5.5 },
+    1:  { player: 'Victor Wembanyama',    stat: 'Steals',  line: 1.5 },
+    2:  { player: 'Julius Randle',      stat: 'Points',  line: 22.5 },
+    3:  { player: 'Donte DiVincenzo',      stat: 'Threes',  line: 2.5 },
+    4:  { player: 'LaMelo Ball',     stat: 'Steals',  line: 1.5 },
+    5:  { player: 'Joel Embiid',      stat: 'Rebounds', line: 7.5 },
+    6:  { player: 'Ty Jerome', stat: 'Points',  line: 20.5 },
+    7:  { player: 'Devin Carter',     stat: 'Steals',  line: 1.5 },
+    8:  { player: 'CJ McCollum',      stat: 'Points',  line: 18.5 },
+    9:  { player: 'Devin Booker',     stat: 'Threes',  line: 1.5 },
+    10: { player: 'Jalen Green',     stat: 'Steals',line: 1.5 },
   };
 
   // All selections — Result: 0=pending, 1=hit, -1=miss
@@ -1019,8 +1024,8 @@
   ];
 
   const MATCHUPS = [
-    { label: 'Matchup 1', team1: 'Medium Sized Daddy', team2: 'THE Diwan Dumpers' },
-    { label: 'Matchup 2', team1: 'The Ass Ripper',     team2: "Logan's Assbloods" },
+    { label: 'Matchup 1', team1: 'The Ass Ripper', team2: 'THE Diwan Dumpers' },
+    { label: 'Matchup 2', team1: 'Medium Sized Daddy', team2: "Logan's Assbloods" },
   ];
 
   const STANDINGS = [
