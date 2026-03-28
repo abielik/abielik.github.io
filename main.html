@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -331,6 +330,70 @@
   .faq-item.open .faq-a { display: block; }
   .faq-item.open .faq-arrow { transform: rotate(180deg); color: var(--accent); }
 
+  /* MATCHUPS */
+  .matchup-grid { display: flex; flex-direction: column; gap: 2rem; margin-top: 2.5rem; }
+  .matchup-card {
+    background: var(--bg); border: 0.5px solid var(--border2);
+    border-radius: 8px; overflow: hidden;
+  }
+  .matchup-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 20px; border-bottom: 0.5px solid var(--border2);
+    background: var(--surface2);
+  }
+  .matchup-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .matchup-status { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); background: rgba(232,255,71,0.08); padding: 3px 10px; border-radius: 2px; }
+  .matchup-teams { display: grid; grid-template-columns: 1fr auto 1fr; align-items: stretch; }
+  .matchup-team {
+    padding: 1.5rem 1.25rem;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .matchup-team.right { text-align: right; align-items: flex-end; }
+  .team-name { font-size: 17px; font-weight: 500; color: var(--text); line-height: 1.2; }
+  .team-score-total { font-family: 'Bebas Neue', sans-serif; font-size: 40px; line-height: 1; color: var(--muted); margin-top: 4px; }
+  .team-score-total.leading { color: var(--accent); }
+  .matchup-divider { display: flex; align-items: center; justify-content: center; padding: 0 1rem; }
+  .vs-badge { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--muted); }
+  .picks-table { width: 100%; border-top: 0.5px solid var(--border); border-collapse: collapse; }
+  .picks-table th {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
+    padding: 8px 14px; text-align: left; border-bottom: 0.5px solid var(--border);
+    background: var(--surface2);
+  }
+  .picks-table th.right { text-align: right; }
+  .picks-table td { padding: 9px 14px; font-size: 13px; border-bottom: 0.5px solid var(--border); vertical-align: middle; }
+  .picks-table tr:last-child td { border-bottom: none; }
+  .picks-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .pick-player { font-weight: 500; color: var(--text); }
+  .pick-stat { color: var(--muted); font-size: 12px; }
+  .pick-dir-over { color: var(--accent2); font-size: 12px; font-weight: 500; background: rgba(255,107,53,0.1); padding: 2px 7px; border-radius: 2px; white-space: nowrap; }
+  .pick-dir-under { color: var(--accent3); font-size: 12px; font-weight: 500; background: rgba(71,200,255,0.1); padding: 2px 7px; border-radius: 2px; white-space: nowrap; }
+  .pick-odds { color: var(--muted); font-size: 12px; }
+  .pick-pts { font-family: 'Bebas Neue', sans-serif; font-size: 18px; text-align: right; }
+  .pick-pts.pending { color: var(--muted); }
+  .pick-pts.hit { color: var(--green); }
+  .pick-pts.miss { color: var(--red); }
+  .pick-conf { font-size: 11px; color: var(--muted); text-align: center; }
+  .badge-dd { font-size: 10px; background: rgba(232,255,71,0.12); color: var(--accent); padding: 1px 6px; border-radius: 2px; margin-left: 4px; }
+  .badge-blocked { font-size: 10px; background: rgba(255,77,77,0.12); color: var(--red); padding: 1px 6px; border-radius: 2px; margin-left: 4px; }
+  .team-section-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 14px; background: var(--surface);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .team-section-name { font-size: 12px; font-weight: 500; color: var(--text); text-transform: uppercase; letter-spacing: 0.06em; }
+  .team-section-pts { font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: var(--muted); margin-left: auto; }
+  .standings-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+  .standings-table th { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 8px 14px; text-align: left; border-bottom: 0.5px solid var(--border2); }
+  .standings-table th.num { text-align: right; }
+  .standings-table td { padding: 12px 14px; font-size: 14px; border-bottom: 0.5px solid var(--border); }
+  .standings-table tr:last-child td { border-bottom: none; }
+  .standings-rank { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--muted); }
+  .standings-team { font-weight: 500; color: var(--text); }
+  .standings-record { font-size: 13px; color: var(--muted); text-align: right; }
+  .standings-pts { font-family: 'Bebas Neue', sans-serif; font-size: 18px; text-align: right; color: var(--text); }
+  .standings-pts-against { font-size: 13px; color: var(--muted); text-align: right; }
+
   /* FOOTER */
   footer {
     border-top: 0.5px solid var(--border);
@@ -385,6 +448,7 @@
     <a href="#scoring">Scoring</a>
     <a href="#confidence">Confidence</a>
     <a href="#props">Props</a>
+    <a href="#matchups">Matchups</a>
     <a href="#faq">FAQ</a>
   </div>
 </nav>
@@ -609,6 +673,24 @@
     <p class="section-body reveal">10 props across 5 games. Pick 5, choose over or under, assign confidence 1–5. Deadline Friday 7:00 PM ET. Lines are live — what you see when you submit is what you lock.</p>
  
     <div id="props-container" style="margin-top: 2.5rem; display: flex; flex-direction: column; gap: 2rem;"></div>
+  </div>
+</section>
+
+<!-- MATCHUPS -->
+<section id="matchups">
+  <div class="section-inner">
+    <span class="section-tag">Day 1</span>
+    <h2 class="section-title reveal">Matchups</h2>
+    <p class="section-body reveal">Two head-to-head matchups running today. Scores update as results come in. Points are pending until each prop settles.</p>
+
+    <div class="matchup-grid" id="matchups-container"></div>
+
+    <div style="margin-top: 3rem;">
+      <span class="section-tag">Standings</span>
+      <h3 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(24px,3vw,36px); letter-spacing:0.03em; margin-bottom: 0.5rem;">League table</h3>
+      <p style="font-size:14px; color:var(--muted); margin-bottom: 0;">Day 1 — no results yet. Standings will update as matchups complete.</p>
+      <table class="standings-table reveal" id="standings-table"></table>
+    </div>
   </div>
 </section>
 
@@ -860,7 +942,197 @@
 	else {
 		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
 	}
-	// ]]>
+	// ── MATCHUPS ──────────────────────────────────────────────
+(function() {
+  const CAP = 2.5;
+
+  const PROPS = {
+    1:  { player: 'Kawhi Leonard',    stat: 'Threes',  line: 2.5 },
+    2:  { player: 'Jason Tatum',      stat: 'Points',  line: 23.5 },
+    3:  { player: 'Jason Tatum',      stat: 'Threes',  line: 3.5 },
+    4:  { player: 'Jaylen Brown',     stat: 'Blocks',  line: 0.5 },
+    5:  { player: 'Tyler Herro',      stat: 'Assists', line: 3.5 },
+    6:  { player: 'Donovan Mitchell', stat: 'Steals',  line: 1.5 },
+    7:  { player: 'Nikola Jokic',     stat: 'Blocks',  line: 0.5 },
+    8:  { player: 'Luka Doncic',      stat: 'Points',  line: 33.5 },
+    9:  { player: 'LeBron James',     stat: 'Threes',  line: 1.5 },
+    10: { player: 'LeBron James',     stat: 'Rebounds',line: 5.5 },
+  };
+
+  // All selections — Result: 0=pending, 1=hit, -1=miss
+  const SELECTIONS = [
+    { team:'Medium Sized Daddy', pick:1, propId:1,  side:'Over',  odds:124,  result:0, basePts:1.24,   dd:false, blocked:false },
+    { team:'Medium Sized Daddy', pick:2, propId:7,  side:'Under', odds:155,  result:0, basePts:1.55,   dd:false, blocked:false },
+    { team:'Medium Sized Daddy', pick:3, propId:5,  side:'Over',  odds:-149, result:0, basePts:0.6711, dd:false, blocked:true  },
+    { team:'Medium Sized Daddy', pick:4, propId:9,  side:'Over',  odds:165,  result:0, basePts:1.65,   dd:true,  blocked:false },
+    { team:'Medium Sized Daddy', pick:5, propId:6,  side:'Over',  odds:183,  result:0, basePts:1.83,   dd:false, blocked:false },
+
+    { team:'The Ass Ripper',     pick:1, propId:1,  side:'Over',  odds:124,  result:0, basePts:1.24,   dd:false, blocked:true  },
+    { team:'The Ass Ripper',     pick:2, propId:3,  side:'Over',  odds:108,  result:0, basePts:1.08,   dd:false, blocked:false },
+    { team:'The Ass Ripper',     pick:3, propId:8,  side:'Over',  odds:-119, result:0, basePts:0.8403, dd:false, blocked:false },
+    { team:'The Ass Ripper',     pick:4, propId:7,  side:'Over',  odds:-210, result:0, basePts:0.4762, dd:false, blocked:false },
+    { team:'The Ass Ripper',     pick:5, propId:5,  side:'Over',  odds:-149, result:0, basePts:0.6711, dd:true,  blocked:false },
+
+    { team:'THE Diwan Dumpers',  pick:1, propId:8,  side:'Under', odds:-107, result:0, basePts:0.9346, dd:false, blocked:false },
+    { team:'THE Diwan Dumpers',  pick:2, propId:1,  side:'Under', odds:-164, result:0, basePts:0.6098, dd:false, blocked:false },
+    { team:'THE Diwan Dumpers',  pick:3, propId:3,  side:'Over',  odds:108,  result:0, basePts:1.08,   dd:false, blocked:false },
+    { team:'THE Diwan Dumpers',  pick:4, propId:7,  side:'Under', odds:155,  result:0, basePts:1.55,   dd:true,  blocked:true  },
+    { team:'THE Diwan Dumpers',  pick:5, propId:10, side:'Over',  odds:-147, result:0, basePts:0.6803, dd:false, blocked:false },
+
+    { team:"Logan's Assbloods",  pick:1, propId:5,  side:'Under', odds:113,  result:0, basePts:1.13,   dd:false, blocked:false },
+    { team:"Logan's Assbloods",  pick:2, propId:2,  side:'Over',  odds:-109, result:0, basePts:0.9174, dd:false, blocked:false },
+    { team:"Logan's Assbloods",  pick:3, propId:10, side:'Over',  odds:-147, result:0, basePts:0.6803, dd:false, blocked:true  },
+    { team:"Logan's Assbloods",  pick:4, propId:6,  side:'Under', odds:-248, result:0, basePts:0.4032, dd:false, blocked:false },
+    { team:"Logan's Assbloods",  pick:5, propId:1,  side:'Over',  odds:124,  result:0, basePts:1.24,   dd:true,  blocked:false },
+  ];
+
+  const MATCHUPS = [
+    { label: 'Matchup 1', team1: 'Medium Sized Daddy', team2: 'THE Diwan Dumpers' },
+    { label: 'Matchup 2', team1: 'The Ass Ripper',     team2: "Logan's Assbloods" },
+  ];
+
+  const STANDINGS = [
+    { team: 'The Ass Ripper',    wins:0, losses:0, ptsFor:0, ptsAgainst:0 },
+    { team: 'Medium Sized Daddy',wins:0, losses:0, ptsFor:0, ptsAgainst:0 },
+    { team: "Logan's Assbloods", wins:0, losses:0, ptsFor:0, ptsAgainst:0 },
+    { team: 'THE Diwan Dumpers', wins:0, losses:0, ptsFor:0, ptsAgainst:0 },
+  ];
+
+  function fmtOdds(o) { return o > 0 ? '+' + o : '' + o; }
+  function calcFinalPts(sel) {
+    if (sel.blocked) return 0;
+    if (sel.result !== 1) return 0;
+    let pts = Math.min(sel.basePts, CAP);
+    if (sel.dd) pts = Math.min(pts * 2, CAP * 2);
+    return pts;
+  }
+  function teamTotal(team) {
+    return SELECTIONS.filter(s => s.team === team).reduce((sum, s) => sum + calcFinalPts(s), 0);
+  }
+  function teamPending(team) {
+    return SELECTIONS.filter(s => s.team === team && !s.blocked).reduce((sum, s) => {
+      let pts = Math.min(s.basePts, CAP);
+      if (s.dd) pts = Math.min(pts * 2, CAP * 2);
+      return sum + pts;
+    }, 0);
+  }
+
+  function buildPickRows(team) {
+    const picks = SELECTIONS.filter(s => s.team === team).sort((a,b) => a.pick - b.pick);
+    return picks.map(sel => {
+      const prop = PROPS[sel.propId];
+      const finalPts = calcFinalPts(sel);
+      const maxPts = (() => { let p = Math.min(sel.basePts, CAP); return sel.dd ? Math.min(p*2, CAP*2) : p; })();
+      let ptsClass = 'pending', ptsVal = maxPts.toFixed(2);
+      if (sel.blocked) { ptsClass = 'miss'; ptsVal = '—'; }
+      else if (sel.result === 1) { ptsClass = 'hit'; ptsVal = '+' + finalPts.toFixed(2); }
+      else if (sel.result === -1) { ptsClass = 'miss'; ptsVal = '0.00'; }
+      const dirTag = sel.side === 'Over'
+        ? `<span class="pick-dir-over">Over ${prop.line}</span>`
+        : `<span class="pick-dir-under">Under ${prop.line}</span>`;
+      const ddBadge = sel.dd ? `<span class="badge-dd">2x</span>` : '';
+      const blkBadge = sel.blocked ? `<span class="badge-blocked">blocked</span>` : '';
+      return `<tr>
+        <td><span class="pick-conf">${sel.pick}</span></td>
+        <td><span class="pick-player">${prop.player}</span> <span class="pick-stat">${prop.stat}</span></td>
+        <td>${dirTag}</td>
+        <td class="pick-odds">${fmtOdds(sel.odds)}</td>
+        <td style="text-align:right">${ddBadge}${blkBadge}</td>
+        <td class="pick-pts ${ptsClass}">${ptsVal}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  function buildMatchupCard(m) {
+    const t1pts = teamTotal(m.team1);
+    const t2pts = teamTotal(m.team2);
+    const t1pending = teamPending(m.team1);
+    const t2pending = teamPending(m.team2);
+    const t1lead = t1pts > t2pts;
+    const t2lead = t2pts > t1pts;
+    return `
+    <div class="matchup-card reveal">
+      <div class="matchup-header">
+        <span class="matchup-label">${m.label}</span>
+        <span class="matchup-status">In Progress</span>
+      </div>
+      <div class="matchup-teams">
+        <div class="matchup-team">
+          <div class="team-name">${m.team1}</div>
+          <div class="team-score-total ${t1lead ? 'leading' : ''}">${t1pts.toFixed(2)}</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:2px">Max possible: ${t1pending.toFixed(2)}</div>
+        </div>
+        <div class="matchup-divider"><span class="vs-badge">VS</span></div>
+        <div class="matchup-team right">
+          <div class="team-name">${m.team2}</div>
+          <div class="team-score-total ${t2lead ? 'leading' : ''}">${t2pts.toFixed(2)}</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:2px">Max possible: ${t2pending.toFixed(2)}</div>
+        </div>
+      </div>
+      <table class="picks-table">
+        <thead>
+          <tr>
+            <th style="width:32px">Conf</th>
+            <th>Player · Stat</th>
+            <th>Pick</th>
+            <th>Odds</th>
+            <th style="text-align:right">Bonus</th>
+            <th class="right">Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="6" style="padding:0">
+            <div class="team-section-header">
+              <span class="team-section-name">${m.team1}</span>
+              <span class="team-section-pts">${t1pts.toFixed(2)} pts</span>
+            </div>
+          </td></tr>
+          ${buildPickRows(m.team1)}
+          <tr><td colspan="6" style="padding:0">
+            <div class="team-section-header">
+              <span class="team-section-name">${m.team2}</span>
+              <span class="team-section-pts">${t2pts.toFixed(2)} pts</span>
+            </div>
+          </td></tr>
+          ${buildPickRows(m.team2)}
+        </tbody>
+      </table>
+    </div>`;
+  }
+
+  function buildStandings() {
+    const header = `<thead><tr>
+      <th style="width:40px"></th>
+      <th>Team</th>
+      <th class="num">W</th>
+      <th class="num">L</th>
+      <th class="num">Record</th>
+      <th class="num">Pts For</th>
+      <th class="num">Pts Against</th>
+    </tr></thead>`;
+    const rows = STANDINGS.map((s, i) => `<tr>
+      <td class="standings-rank">${i+1}</td>
+      <td class="standings-team">${s.team}</td>
+      <td class="standings-record">${s.wins}</td>
+      <td class="standings-record">${s.losses}</td>
+      <td class="standings-record">${s.wins}-${s.losses}</td>
+      <td class="standings-pts">${s.ptsFor.toFixed(2)}</td>
+      <td class="standings-pts-against">${s.ptsAgainst.toFixed(2)}</td>
+    </tr>`).join('');
+    return header + '<tbody>' + rows + '</tbody>';
+  }
+
+  const mc = document.getElementById('matchups-container');
+  MATCHUPS.forEach(m => { mc.innerHTML += buildMatchupCard(m); });
+  document.getElementById('standings-table').innerHTML = buildStandings();
+
+  // Trigger reveal
+  const newR = document.querySelectorAll('#matchups-container .reveal');
+  const obsM = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obsM.unobserve(e.target); } });
+  }, { threshold: 0.05 });
+  newR.forEach(el => obsM.observe(el));
+})();
 </script>
 </body>
 </html>
